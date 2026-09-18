@@ -1,0 +1,13 @@
+{
+  "gimnasio": "Gimnasio UNIAJC",
+  "clases": [
+    { "id": 1, "nombre": "Spinning", "instructor": "Laura Mejia", "horario": "06:00", "cupos": 20 },
+    { "id": 2, "nombre": "CrossFit", "instructor": "Andres Ramirez", "horario": "18:00", "cupos": 15 },
+    { "id": 3, "nombre": "Yoga", "instructor": "Camila Torres", "horario": "07:30", "cupos": 25 }
+  ],
+  "membresias": [
+    { "id": 1, "tipo": "Mensual", "precio": 80000, "duracionDias": 30 },
+    { "id": 2, "tipo": "Trimestral", "precio": 210000, "duracionDias": 90 },
+    { "id": 3, "tipo": "Anual", "precio": 720000, "duracionDias": 365 }
+  ]
+}

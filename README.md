@@ -41,6 +41,9 @@ El servidor queda en `http://localhost:3000` (configurable con `PORT`).
 | GET | `/courses` | Arreglo de clases | 200 |
 | GET | `/courses/:id` | Clase solicitada | 200 |
 | GET | `/courses/:id` | `{ "error": "Clase no encontrada" }` | 404 |
+| GET | `/memberships` | Arreglo de membresias | 200 |
+| GET | `/memberships/:id` | Membresia solicitada | 200 |
+| GET | `/memberships/:id` | `{ "error": "Membresia no encontrada" }` | 404 |
 
 ### Ejemplo
 

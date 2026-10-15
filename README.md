@@ -1,6 +1,8 @@
 # Gimnasio - Clases y Membresias
 
 Sistema de gestion de clases y membresias para un gimnasio.
+
+Dominio: API REST para administrar las clases (courses), los instructores y los planes de membresia de un gimnasio.
 Proyecto de la asignatura Programacion V - Backend (UNIAJC).
 
 ## Integrantes del grupo
@@ -12,7 +14,7 @@ Proyecto de la asignatura Programacion V - Backend (UNIAJC).
 
 ## Requisitos
 
-- Node.js 18 o superior
+- Node.js 20 o superior
 - npm
 
 ## Instalacion
@@ -31,19 +33,27 @@ npm run build   # compila TypeScript a dist/
 npm start       # ejecuta la version compilada
 ```
 
-El servidor queda en `http://localhost:3000` (configurable con `PORT`).
+El servidor queda en `http://localhost:3000` (configurable con `PORT`). Para comprobarlo abre `http://localhost:3000/health`.
 
 ## Endpoints
 
-| Metodo | Ruta | Respuesta | Codigo |
-|---|---|---|---|
-| GET | `/health` | `{ "status": "ok" }` | 200 |
-| GET | `/courses` | Arreglo de clases | 200 |
-| GET | `/courses/:id` | Clase solicitada | 200 |
-| GET | `/courses/:id` | `{ "error": "Clase no encontrada" }` | 404 |
-| GET | `/memberships` | Arreglo de membresias | 200 |
-| GET | `/memberships/:id` | Membresia solicitada | 200 |
-| GET | `/memberships/:id` | `{ "error": "Membresia no encontrada" }` | 404 |
+| Metodo | Ruta | Descripcion | Exito | Errores |
+|---|---|---|---|---|
+| GET | `/health` | Estado del servidor | 200 | - |
+| GET | `/courses` | Listar clases | 200 | - |
+| GET | `/courses/:id` | Obtener una clase | 200 | 404 |
+| POST | `/courses` | Crear clase (`title`, `instructor`, `schedule`, `capacity`) | 201 | 400 |
+| PUT | `/courses/:id` | Actualizar clase | 200 | 404 |
+| DELETE | `/courses/:id` | Eliminar clase | 204 | 404 |
+| GET | `/instructors` | Listar instructores | 200 | - |
+| GET | `/instructors/:id` | Obtener un instructor | 200 | 404 |
+| POST | `/instructors` | Crear instructor (`name`, `email`) | 201 | 400 |
+| PUT | `/instructors/:id` | Actualizar instructor | 200 | 404 |
+| DELETE | `/instructors/:id` | Eliminar instructor | 204 | 404 |
+| GET | `/memberships` | Listar membresias | 200 | - |
+| GET | `/memberships/:id` | Obtener una membresia | 200 | 404 |
+
+Los datos de clases e instructores viven en memoria: se reinician al reiniciar el servidor.
 
 ### Ejemplo
 
@@ -62,18 +72,21 @@ curl http://localhost:3000/courses/2
 ## Estructura
 
 ```
-Gimnasio-Clases-y-Membresias/
-|-- README.md
-|-- .gitignore
-|-- .env.example
-|-- package.json
-|-- package-lock.json
-|-- tsconfig.json
-|-- data/
-|   `-- gimnasio.json
+|-- data/gimnasio.json
+|-- docs/
+|   |-- contratos/
+|   `-- postman/Gimnasio.postman_collection.json
 `-- src/
-    `-- index.ts
+    |-- index.ts
+    |-- data/         datos semilla en memoria
+    |-- services/     logica de negocio
+    |-- controllers/  traduccion HTTP
+    `-- routes/       verbo + ruta -> controller
 ```
+
+## Postman
+
+Importa `docs/postman/Gimnasio.postman_collection.json` (variable `baseUrl = http://localhost:3000`).
 
 ## Flujo de trabajo
 

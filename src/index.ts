@@ -46,5 +46,5 @@ app.get("/memberships/:id", (req: Request, res: Response) => {
 app.use("/instructors", instructorRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
